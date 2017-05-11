@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mvcHomeWork.Models;
+using System.Threading.Tasks;
 
 namespace mvcHomeWork.Controllers
 {
@@ -128,5 +129,19 @@ namespace mvcHomeWork.Controllers
             }
             base.Dispose(disposing);
         }
+
+         public JsonResult 檢查Email是否存在(string Email, int 客戶Id)
+        {
+            var result = true;
+            var user = db.客戶聯絡人
+                .Where(x => x.Email.ToLower() == Email.ToLower()
+                 && x.客戶Id== 客戶Id)
+                .FirstOrDefault();
+            if (user != null)
+                result = false;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

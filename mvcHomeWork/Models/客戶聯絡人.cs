@@ -9,15 +9,18 @@
 
 namespace mvcHomeWork.Models
 {
-    using Controllers.ValidationAttributes;
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using System.Threading.Tasks;
+    using System.ComponentModel;
 
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
+        [DisplayName ("客戶名稱")]
         public int 客戶Id { get; set; }
         [Required(ErrorMessage = "職稱不可空白")]
         public string 職稱 { get; set; }
@@ -26,8 +29,8 @@ namespace mvcHomeWork.Models
 
         [Required(ErrorMessage = "Email不可空白")]
         [EmailAddress(ErrorMessage = "請輸入正確的Email")]
-       // [Remote("GetUser", "User", ErrorMessage = "Email已存在")]
-        [檢查Email是否存在(ErrorMessage = "Email已存在")]
+
+        [Remote("檢查Email是否存在", "客戶聯絡人", AdditionalFields = "Email,客戶Id", ErrorMessage = "該Email已存在")]
         public string Email { get; set; }
 
         [RegularExpression(@"^\d{4}-\d{6}$",  ErrorMessage = "手機電話格式必須為0911-111111")]
@@ -35,6 +38,11 @@ namespace mvcHomeWork.Models
         public string 電話 { get; set; }
     
         public virtual 客戶資料 客戶資料 { get; set; }
+
+        internal Task<object> FindByNameAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
