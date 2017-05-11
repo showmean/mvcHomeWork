@@ -11,8 +11,7 @@ namespace mvcHomeWork.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class 客戶資料
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,18 +22,13 @@ namespace mvcHomeWork.Models
         }
     
         public int Id { get; set; }
-        [Required(ErrorMessage ="客戶名稱不可空白")]
         public string 客戶名稱 { get; set; }
-        [Required(ErrorMessage = "客戶名稱不可空白")]
-        [StringLength(8,ErrorMessage = "統一編號長度為 8位數", MinimumLength =8)]
         public string 統一編號 { get; set; }
-        [Required(ErrorMessage = "電話不可空白")]
-       
         public string 電話 { get; set; }
         public string 傳真 { get; set; }
         public string 地址 { get; set; }
-        [EmailAddress(ErrorMessage ="請輸入正確的Email")]
         public string Email { get; set; }
+        public bool 是否已刪除 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
