@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using mvcHomeWork.Models;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace mvcHomeWork.Controllers
 {
@@ -127,7 +129,33 @@ namespace mvcHomeWork.Controllers
             客戶資料repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
+        public ActionResult Excel()
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                var data = 客戶資料repo.All().Select(c => new { c.客戶名稱, c.電話, c.傳真, c.統一編號,c.地址});
+                var ws = wb.Worksheets.Add("客戶資料", 1);
+                ws.Cell(1, 1).Value = "客戶名稱";
+                ws.Cell(1, 2).Value = "電話";
+                ws.Cell(1, 3).Value = "傳真";
+                ws.Cell(1, 4).Value = "統一編號";
+                ws.Cell(1, 5).Value = "地址";
 
+                //注意官方文件上說明,如果是要塞入Query後的資料該資料一定要變成是data.AsEnumerable()
+                //但是查詢出來的資料剛好是IQueryable ,其中IQueryable有繼承IEnumerable 所以不需要特別寫
+                ws.Cell(2, 1).InsertData(data);
+
+                //因為是用Query的方式,這個地方要用串流的方式來存檔
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(memoryStream);
+                    //請注意 一定要加入這行,不然Excel會是空檔
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    //注意Excel的ContentType,是要用這個"application/vnd.ms-excel" 不曉得為什麼網路上有的Excel ContentType超長,xlsx會錯 xls反而不會
+                    return File(memoryStream.ToArray(), "application/vnd.ms-excel", "Download.xlsx");
+                }
+            }
+        }
         //protected override void Dispose(bool disposing)
         //{
         //    if (disposing)

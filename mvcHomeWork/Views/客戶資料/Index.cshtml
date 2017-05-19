@@ -12,6 +12,9 @@
     {
 < input type = "search"  name = "keyword" placeholder = "請輸入關鍵字" value = "" />
             }*@
+    <div>
+        <button id="export">匯出Excel</button>
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -66,3 +69,14 @@
     }
 
 </table>
+<script src="~/Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $("#export").click(function () {
+        $.ajax({
+            url: "@Url.Action("Excel")",
+            success: function () {
+                window.location.href = '@Url.Action("Excel", "客戶資料")';
+            }
+        });
+    });
+</script>

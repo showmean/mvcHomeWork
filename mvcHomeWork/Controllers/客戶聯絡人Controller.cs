@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using mvcHomeWork.Models;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace mvcHomeWork.Controllers
 {
@@ -166,6 +168,22 @@ namespace mvcHomeWork.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult Excel()
+        {
+                XLWorkbook wb = new XLWorkbook();
+                var data = 客戶聯絡人repo.All().Select(c => new { c.姓名, c.職稱, c.客戶資料, c.電話, c.手機,c.Email });
+                var ws = wb.Worksheets.Add("客戶聯絡人", 1);
+                ws.Cell(1, 1).Value = "姓名";
+                ws.Cell(1, 2).Value = "職稱";
+                ws.Cell(1, 3).Value = "客戶資料";
+                ws.Cell(1, 4).Value = "電話";
+                ws.Cell(1, 5).Value = "手機";
+                ws.Cell(1, 6).Value = "Email";
+                ws.Cell(2, 1).InsertData(data);
+                MemoryStream memoryStream = new MemoryStream();
+                wb.SaveAs(memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return File(memoryStream.ToArray(), "application/vnd.ms-excel", "Download.xlsx");
+        }
     }
 }
