@@ -29,7 +29,7 @@ namespace mvcHomeWork.Models
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         [Required(ErrorMessage = "Email不可空白")]
         [EmailAddress(ErrorMessage = "請輸入正確的Email")]
-        [Remote("檢查Email是否存在", "客戶聯絡人", AdditionalFields = "Email,客戶Id", ErrorMessage = "該Email已存在")]
+        [Remote("檢查Email是否存在", "客戶聯絡人", AdditionalFields = "Email,客戶Id,Id", ErrorMessage = "該Email已存在")]
         public string Email { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
