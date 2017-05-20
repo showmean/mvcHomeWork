@@ -12,9 +12,18 @@ namespace mvcHomeWork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class 客戶類別
+    public partial class 客戶分類
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public 客戶分類()
+        {
+            this.客戶資料 = new HashSet<客戶資料>();
+        }
+    
         public int Id { get; set; }
-        public string 類別 { get; set; }
+        public string 分類 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<客戶資料> 客戶資料 { get; set; }
     }
 }

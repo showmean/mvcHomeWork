@@ -15,10 +15,10 @@ namespace mvcHomeWork.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class 客戶資料Entities1 : DbContext
+    public partial class 客戶資料Entities : DbContext
     {
-        public 客戶資料Entities1()
-            : base("name=客戶資料Entities1")
+        public 客戶資料Entities()
+            : base("name=客戶資料Entities")
         {
         }
     
@@ -28,11 +28,11 @@ namespace mvcHomeWork.Models
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<客戶分類> 客戶分類 { get; set; }
         public virtual DbSet<客戶資料> 客戶資料 { get; set; }
         public virtual DbSet<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual DbSet<客戶聯絡人> 客戶聯絡人 { get; set; }
         public virtual DbSet<客戶管理> 客戶管理 { get; set; }
-        public virtual DbSet<客戶類別> 客戶類別 { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -14,9 +14,9 @@ namespace mvcHomeWork.Models
     
     public partial class 客戶管理
     {
+        public int Id { get; set; }
         public string 客戶名稱 { get; set; }
         public Nullable<int> 聯絡人數量 { get; set; }
         public Nullable<int> 銀行帳戶資料數量 { get; set; }
-        public int Id { get; set; }
     }
 }
