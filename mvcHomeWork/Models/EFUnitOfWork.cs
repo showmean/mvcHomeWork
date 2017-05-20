@@ -6,12 +6,12 @@ namespace mvcHomeWork.Models
 	{
 		public DbContext Context { get; set; }
 
-		public EFUnitOfWork()
-		{
-			Context = new 客戶資料Entities();
-		}
+        public EFUnitOfWork()
+        {
+            Context = new 客戶資料Entities();
+        }
 
-		public void Commit()
+        public void Commit()
 		{
 			Context.SaveChanges();
 		}

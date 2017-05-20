@@ -9,6 +9,7 @@ namespace mvcHomeWork.Controllers
 {
     public abstract class BaseController : Controller
     {
+        protected 客戶分類Repository 客戶分類repo = RepositoryHelper.Get客戶分類Repository();
         protected 客戶資料Repository 客戶資料repo = RepositoryHelper.Get客戶資料Repository();
         protected 客戶管理Repository 客戶管理repo = RepositoryHelper.Get客戶管理Repository();
         protected 客戶銀行資訊Repository 客戶銀行資訊repo = RepositoryHelper.Get客戶銀行資訊Repository();

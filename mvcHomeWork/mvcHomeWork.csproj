@@ -220,6 +220,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\客戶分類Controller.cs" />
     <Compile Include="Controllers\客戶管理Controller.cs" />
     <Compile Include="Controllers\客戶聯絡人Controller.cs" />
     <Compile Include="Controllers\客戶資料Controller.cs" />
@@ -343,10 +344,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\客戶資料.mdf" />
-    <Content Include="App_Data\客戶資料_log.ldf">
-      <DependentUpon>客戶資料.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -462,6 +459,10 @@
     <Content Include="Views\客戶銀行資訊\Index.cshtml" />
     <Content Include="Views\客戶管理\Index.cshtml" />
     <Content Include="Views\客戶聯絡人\Create.cshtml" />
+    <Content Include="Views\客戶分類\Create.cshtml" />
+    <Content Include="Views\客戶分類\Details.cshtml" />
+    <Content Include="Views\客戶分類\Edit.cshtml" />
+    <Content Include="Views\客戶分類\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -476,6 +477,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>

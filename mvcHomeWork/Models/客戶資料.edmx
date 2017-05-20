@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="分類" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="客戶資料">
